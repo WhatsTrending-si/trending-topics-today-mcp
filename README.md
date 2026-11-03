@@ -21,9 +21,9 @@ Claude: (calls get_top_trends for "Google Trends", "TikTok Trending Hashtags", "
         Today's top 10 on each, with new entries and climbers since yesterday...
 ```
 
-## Connect in 10 seconds
+## Read the boards from your AI
 
-Pick your app. Every button opens it with WhatsTrending already filled in. Claude and ChatGPT sign you in with your WhatsTrending account, so there is no API key to copy.
+Rather ask than scroll? Add `https://whatstrending.si/mcp` to your AI app and sign in with a free account.
 
 <p align="center">
   <a href="https://claude.ai/customize/connectors?modal=add-custom-connector&connectorName=WhatsTrending&connectorUrl=https%3A%2F%2Fwhatstrending.si%2Fmcp"><img src="https://img.shields.io/badge/Add%20to-Claude-D97757?style=for-the-badge&logo=claude&logoColor=white" alt="Add to Claude"></a>
@@ -32,47 +32,7 @@ Pick your app. Every button opens it with WhatsTrending already filled in. Claud
   <a href="https://insiders.vscode.dev/redirect/mcp/install?name=whatstrending&config=%7B%22type%22%3A%22http%22%2C%22url%22%3A%22https%3A//whatstrending.si/mcp%22%7D"><img src="https://img.shields.io/badge/Add%20to-VS%20Code-007ACC?style=for-the-badge&logo=visualstudiocode&logoColor=white" alt="Add to VS Code"></a>
 </p>
 
-| App | After you click |
-|---|---|
-| **Claude** | The connector name and URL are prefilled. Confirm, sign in to WhatsTrending, approve access. |
-| **ChatGPT** | Turn on Developer mode under Settings → Security and login. Name it `WhatsTrending`, URL `https://whatstrending.si/mcp`, choose OAuth, sign in. |
-| **Cursor** | Approve the install. Sign in to WhatsTrending when Cursor asks. |
-| **VS Code** | Approve the install. Open Chat in Agent mode and enable the WhatsTrending tools. |
-
-**Server URL:** `https://whatstrending.si/mcp`
-
-**Every coding agent at once** (Cursor, Claude Code, VS Code, Windsurf and more, detected automatically):
-
-```bash
-npx add-mcp https://whatstrending.si/mcp
-```
-
-Then ask: `Using WhatsTrending, what's trending on Google right now?`
-
-<details>
-<summary><b>Claude Code</b></summary>
-
-```bash
-claude mcp add --transport http whatstrending https://whatstrending.si/mcp
-```
-
-</details>
-
-<details>
-<summary><b>Grok</b></summary>
-
-In Grok, open Connectors, choose **New Connector**, then **Custom**, and paste `https://whatstrending.si/mcp`. Sign in to WhatsTrending when asked. Menu names can differ slightly per plan.
-
-</details>
-
-<details>
-<summary><b>Any other MCP client</b></summary>
-
-Add a remote MCP server (streamable HTTP) with the URL `https://whatstrending.si/mcp` and sign in when prompted. Prefer an API key? [Get a free key](https://whatstrending.si/account?utm_source=github&utm_medium=readme&utm_campaign=trending-topics-today-mcp): the account page has buttons for Cursor and VS Code with your key already included.
-
-</details>
-
-Full setup for every app: [whatstrending.si/docs](https://whatstrending.si/docs?utm_source=github&utm_medium=readme&utm_campaign=trending-topics-today-mcp).
+In ChatGPT: Plugins → + → Add custom MCP server, paste the URL, choose OAuth. Other apps: [whatstrending.si/docs](https://whatstrending.si/docs?utm_source=github&utm_medium=readme&utm_campaign=trending-topics-today-mcp).
 
 ## What you can ask
 
@@ -108,26 +68,47 @@ Tip: start with "Using WhatsTrending" so your AI uses these tools instead of a w
 
 By category: [Social media](https://whatstrending.si/category/social-media?utm_source=github&utm_medium=readme&utm_campaign=trending-topics-today-mcp) · [Search](https://whatstrending.si/category/search?utm_source=github&utm_medium=readme&utm_campaign=trending-topics-today-mcp) · [News](https://whatstrending.si/category/news?utm_source=github&utm_medium=readme&utm_campaign=trending-topics-today-mcp) · [Shopping](https://whatstrending.si/category/shopping?utm_source=github&utm_medium=readme&utm_campaign=trending-topics-today-mcp) · [Apps](https://whatstrending.si/category/apps?utm_source=github&utm_medium=readme&utm_campaign=trending-topics-today-mcp) · [Entertainment](https://whatstrending.si/category/entertainment?utm_source=github&utm_medium=readme&utm_campaign=trending-topics-today-mcp) · [Tech](https://whatstrending.si/category/tech?utm_source=github&utm_medium=readme&utm_campaign=trending-topics-today-mcp)
 
-## Tools
+## Ask your AI for any board
 
-Three read-only tools. Your AI picks the right one from your question.
+Your AI reads every list through `get_top_trends`, 27 boards in all. Name the board exactly:
 
-| Tool | Use when | Needs a keyword? |
-|---|---|---|
-| `get_top_trends` | What is ranking on a platform right now | No |
-| `get_growth` | Percent change over 7D to 5Y, several windows and sources in one call | Yes |
-| `get_time_series` | Up to 5 years of history for one keyword on one source | Yes |
+| Board (`type`) | Updated |
+|---|---|
+| `Amazon Best Sellers Top Rated` | Daily |
+| `Amazon Best Sellers by Category` | Daily |
+| `App Store Top Free` | Daily |
+| `App Store Top Paid` | Daily |
+| `GitHub` | Daily |
+| `Google News Top News` | Live |
+| `Google Play` | Daily |
+| `Google Trends` | Live |
+| `Google Trends by Category` | Live |
+| `IMDb MOVIEmeter` | Daily |
+| `Open Library Trending Books` | Daily |
+| `Pinterest Trending` | Live |
+| `Pinterest Trending by Category` | Live |
+| `Polymarket Top Markets` | Live |
+| `Reddit Hot Posts` | Live |
+| `Reddit World News` | Live |
+| `Top Websites` | Monthly |
+| `Spotify Top Podcasts` | Daily |
+| `Steam Most Played` | Live |
+| `Substack` | Daily |
+| `Substack by Category` | Daily |
+| `TikTok Trending Hashtags` | Daily |
+| `TikTok Trending Hashtags by Category` | Daily |
+| `TikTok Trending Searches` | Daily |
+| `Wikipedia Trending` | Daily |
+| `X (Twitter) Trending` | Live |
+| `YouTube Trending` | Daily |
 
-## Free and paid
+Then ask why something is on it: `get_context` returns the posts, stories and comments behind a trend. `get_growth` and `get_time_series` show whether it is new or has been building for years.
 
-| Plan | Requests a month | Price |
-|---|---|---|
-| Free | 100 | $0 |
-| Starter | 1,000 | $19 / month |
-| Pro | 5,000 | $49 / month |
-| Business | 25,000 | $199 / month |
+Full list with categories: [whatstrending.si/data-catalog](https://whatstrending.si/data-catalog?utm_source=github&utm_medium=readme&utm_campaign=trending-topics-today-mcp).
 
-Every plan has every source. Annual billing saves 20%. Only successful calls count. [Get started free](https://whatstrending.si/account?utm_source=github&utm_medium=readme&utm_campaign=trending-topics-today-mcp): email and an 8-digit code, no password, no credit card.
+## Free to read
+
+The board on whatstrending.si is free, about a day behind. From your AI, the free plan gives 100 requests a month with the top 10 of each board; paid plans from $19 a month show live, deeper boards. Or buy credits once ($15 for 600, $49 for 2,500, $199 for 12,000 credits), no subscription. [Pricing](https://whatstrending.si/pricing?utm_source=github&utm_medium=readme&utm_campaign=trending-topics-today-mcp) · [Start free](https://whatstrending.si/account?utm_source=github&utm_medium=readme&utm_campaign=trending-topics-today-mcp).
 
 ## FAQ
 
